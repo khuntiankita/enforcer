@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Box, Typography, Select, MenuItem, Card, CardContent, Button, FormControl, InputLabel } from "@mui/material";
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 
 function Worker() {
   const [bookings, setBookings] = useState([]);
@@ -10,7 +11,7 @@ function Worker() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/bookings/requestedtosupplier", {
+        const res = await axios.get(`${API_BASE_URL}/api/bookings/requestedtosupplier`, {
           withCredentials: true,
         });
         setBookings(res.data);

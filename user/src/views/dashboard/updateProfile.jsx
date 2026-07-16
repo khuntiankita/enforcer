@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CircularProgress, Box, TextField, Button, Typography } from "@mui/material";
 import AuthContext from "../../context/AuthContext";
+import { API_BASE_URL } from "../../config";
 
 function UpdateProfile() {
   const { user, setUser } = useContext(AuthContext);
@@ -20,7 +21,7 @@ function UpdateProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users/profile", {
+        const res = await fetch(`${API_BASE_URL}/api/users/profile`, {
           method: "GET",
           credentials: "include",
         });
@@ -65,7 +66,7 @@ function UpdateProfile() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/profile", {
+      const res = await fetch(`${API_BASE_URL}/api/users/profile`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
 const SupplierList = () => {
   const { user, isLoading } = useContext(AuthContext);
@@ -41,7 +42,7 @@ const SupplierList = () => {
 
   useEffect(() => {
     // Fetch all suppliers without filtering
-    fetch("http://localhost:5000/api/users/suppliers", { credentials: "include" })
+    fetch(`${API_BASE_URL}/api/users/suppliers`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => setSuppliers(data))
       .catch((err) => console.error("Failed to fetch suppliers", err));
@@ -82,7 +83,7 @@ const SupplierList = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:5000/api/bookings/${endpoint}`,
+        `${API_BASE_URL}/api/bookings/${endpoint}`,
         postData,
         { withCredentials: true }
       );

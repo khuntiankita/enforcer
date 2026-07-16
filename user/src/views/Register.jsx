@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import {
   Box,
   Typography,
@@ -51,7 +52,7 @@ function Register() {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/users/register", requestData);
+      await axios.post(`${API_BASE_URL}/api/users/register`, requestData);
       alert("Registration successful!");
       navigate("/home");
     } catch (error) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link as MuiLink, CircularProgress } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import { API_BASE_URL } from "../../config";
 
 function Dashboard() {
   const { user, setUser } = useContext(AuthContext);
@@ -48,7 +49,7 @@ function Dashboard() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/login", {
+      const res = await fetch(`${API_BASE_URL}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

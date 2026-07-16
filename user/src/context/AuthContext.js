@@ -1,6 +1,7 @@
 // src/context/AuthContext.js
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
 const AuthContext = createContext();
 
@@ -11,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   // Logout function
   const logout = async () => {
     try {
-      await axios.post("http://localhost:5000/api/users/logout", {}, {
+      await axios.post(`${API_BASE_URL}/api/users/logout`, {}, {
         withCredentials: true,
       });
       setUser(false); // Set user to false after successful logout
@@ -26,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const checkLogin = async () => {
       console.log('Auth check initiated...');
       try {
-        const res = await axios.get("http://localhost:5000/api/users/profile", {
+        const res = await axios.get(`${API_BASE_URL}/api/users/profile`, {
           withCredentials: true,
         });
         console.log('Auth check successful. User data:', res.data);

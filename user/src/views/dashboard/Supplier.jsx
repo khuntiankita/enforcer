@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 
 function SupplierDashboard() {
   const [bookings, setBookings] = useState([]);
@@ -13,7 +14,7 @@ function SupplierDashboard() {
   const fetchSupplierInfo = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/users/profile/force",
+        `${API_BASE_URL}/api/users/profile/force`,
         { withCredentials: true }
       );
       setAvailableForce(res.data.availableForce || 0);
@@ -28,7 +29,7 @@ function SupplierDashboard() {
   const fetchBookings = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/bookings/requests",
+        `${API_BASE_URL}/api/bookings/requests`,
         { withCredentials: true }
       );
       setBookings(res.data);
@@ -43,7 +44,7 @@ function SupplierDashboard() {
   const fetchRequests = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/bookings/requestsbyworker",
+        `${API_BASE_URL}/api/bookings/requestsbyworker`,
         { withCredentials: true }
       );
       setRequests(res.data);
@@ -61,7 +62,7 @@ function SupplierDashboard() {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/bookings/${item._id}/approve`,
+        `${API_BASE_URL}/api/bookings/${item._id}/approve`,
         {},
         { withCredentials: true }
       );

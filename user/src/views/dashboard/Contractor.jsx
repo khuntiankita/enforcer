@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, MenuItem, Select, Card, CardContent } from "@mui/material";
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 
 function ContractorDashboard() {
   const [bookings, setBookings] = useState([]);
@@ -9,7 +10,7 @@ function ContractorDashboard() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/bookings/requested", {
+        const res = await axios.get(`${API_BASE_URL}/api/bookings/requested`, {
           withCredentials: true,
         });
         setBookings(res.data);
